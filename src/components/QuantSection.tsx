@@ -157,12 +157,48 @@ export function QuantSection({ colors, pair, onSelectPair }: Props) {
 
       <details className="glossary">
         <summary>用語について</summary>
-        <p>
-          ΔE（デルタイー）は2色の「見た目の違い」を数値にしたものです。おおよそ 1
-          未満は見分けがつかず、2〜10 で違いがはっきりし、50
-          を超えるとまったく別の色に見えます。コントラスト比は文字の読みやすさの指標で、通常サイズの文字は
-          4.5 以上（AA）、大きな文字は 3 以上あれば読みやすいとされています。
-        </p>
+        <div className="glossary__body">
+          <div className="glossary__term">
+            <h3 className="glossary__name">色差 ΔE2000（デルタイー）</h3>
+            <p className="glossary__desc">
+              2色が「どれくらい違って見えるか」を表す数値。大きいほど別の色に見えます。
+            </p>
+            <div className="glossary__scale">
+              <span className="glossary__range">0 〜 1</span>
+              <span>ほぼ同じ色に見える</span>
+              <span className="glossary__range">1 〜 2</span>
+              <span>よく見比べると分かる</span>
+              <span className="glossary__range">2 〜 10</span>
+              <span>はっきり違って見える</span>
+              <span className="glossary__range">10 〜 50</span>
+              <span>明確に別の色</span>
+              <span className="glossary__range">50 〜</span>
+              <span>まったく別の色</span>
+            </div>
+          </div>
+          <div className="glossary__term">
+            <h3 className="glossary__name">コントラスト比</h3>
+            <p className="glossary__desc">
+              文字色と背景色の明るさの差。1:1（差がない）から 21:1（白と黒）までの値で、
+              大きいほど文字が読みやすくなります。
+            </p>
+            <p className="glossary__desc glossary__desc--spaced">
+              合格判定の AA / AAA は、Webアクセシビリティの国際基準 WCAG が定める合格ライン。
+              AA が実務上の標準、AAA はより厳しい上位基準です。
+              「通常」は本文サイズの文字、「大」は見出しなど大きな文字（約24px以上）を指します。
+            </p>
+            <div className="glossary__scale">
+              <span className="glossary__range">AA 通常</span>
+              <span>4.5:1 以上 — 本文の文字に使える標準ライン</span>
+              <span className="glossary__range">AA 大</span>
+              <span>3:1 以上 — 大きな文字なら使えるライン</span>
+              <span className="glossary__range">AAA 通常</span>
+              <span>7:1 以上 — 本文の文字のより厳しい基準</span>
+              <span className="glossary__range">AAA 大</span>
+              <span>4.5:1 以上 — 大きな文字のより厳しい基準</span>
+            </div>
+          </div>
+        </div>
       </details>
     </section>
   )
