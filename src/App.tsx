@@ -123,6 +123,7 @@ export default function App() {
       <div className="layout">
         <ColorListPanel
           colors={state.colors}
+          pair={state.pair}
           onPick={(i, hex) => updateColor(i, { hex, text: hex })}
           onName={(i, name) => updateColor(i, { name })}
           onTextChange={(i, text) => updateColor(i, { text })}

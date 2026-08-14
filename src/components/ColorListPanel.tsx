@@ -2,6 +2,8 @@ import type { ColorEntry } from '../state'
 
 interface Props {
   colors: ColorEntry[]
+  // 定量比較で選択中のペア（colors のインデックス）
+  pair: [number, number]
   onPick: (i: number, hex: string) => void
   onName: (i: number, name: string) => void
   onTextChange: (i: number, text: string) => void
@@ -15,7 +17,9 @@ interface Props {
 }
 
 export function ColorListPanel(props: Props) {
-  const { colors } = props
+  const { colors, pair } = props
+  // マトリクスでペア選択できるのは3色以上のときだけなので、強調もそれに合わせる
+  const paired = (i: number) => colors.length > 2 && (i === pair[0] || i === pair[1])
   return (
     <aside className="aside">
       <div className="aside__head">
@@ -24,7 +28,7 @@ export function ColorListPanel(props: Props) {
       </div>
 
       {colors.map((c, i) => (
-        <div className="color-item" key={c.id}>
+        <div className={'color-item' + (paired(i) ? ' color-item--paired' : '')} key={c.id}>
           <div className="color-item__row">
             <label className="color-item__swatch">
               <span className="color-item__swatch-fill" style={{ background: c.hex }} />

@@ -218,6 +218,11 @@ a:hover {
   background: var(--panel-sub);
 }
 
+.color-item--paired {
+  border-color: var(--ink);
+  background: #f0efeb;
+}
+
 .color-item__row {
   display: flex;
   align-items: center;
