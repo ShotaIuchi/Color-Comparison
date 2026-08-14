@@ -52,6 +52,7 @@ export function serialize(st: AppState): string {
   p.set('p', st.part)
   p.set('g', st.page)
   p.set('t', st.theme)
+  p.set('s', st.pair[0] + '-' + st.pair[1])
   return p.toString()
 }
 
@@ -93,13 +94,20 @@ export function loadInitial(): AppState {
       })
       .filter((c) => /^#[0-9a-f]{6}$/i.test(c.hex))
     if (!colors.length) return def
+    let pair: [number, number] = [0, Math.min(1, colors.length - 1)]
+    const sm = (src.get('s') ?? '').match(/^(\d+)-(\d+)$/)
+    if (sm) {
+      const i = parseInt(sm[1], 10)
+      const j = parseInt(sm[2], 10)
+      if (i < colors.length && j < colors.length && i !== j) pair = [i, j]
+    }
     return {
       ...def,
       colors,
       part: pick(PARTS, src.get('p'), def.part),
       page: pick(PAGES, src.get('g'), def.page),
       theme: pick(THEMES, src.get('t'), def.theme),
-      pair: [0, Math.min(1, colors.length - 1)],
+      pair,
       seq: colors.length + 1
     }
   } catch {
