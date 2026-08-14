@@ -10,6 +10,8 @@ interface Props {
   onDown: (i: number) => void
   onRemove: (i: number) => void
   onAdd: () => void
+  onImport: () => void
+  onExport: () => void
 }
 
 export function ColorListPanel(props: Props) {
@@ -73,7 +75,17 @@ export function ColorListPanel(props: Props) {
       <button className="add-btn" onClick={props.onAdd}>
         ＋ 色を追加
       </button>
-      <p className="aside__hint">HEX / rgb() / hsl() を入力できます。</p>
+      <div className="port-btns">
+        <button className="port-btn" onClick={props.onImport}>
+          ↓ インポート
+        </button>
+        <button className="port-btn" onClick={props.onExport}>
+          ↑ エクスポート
+        </button>
+      </div>
+      <p className="aside__hint">
+        HEX / rgb() / hsl() を入力できます。Android / iOS / Web の色定義の取り込み・書き出しはインポート / エクスポートから。
+      </p>
     </aside>
   )
 }

@@ -11,12 +11,15 @@ import {
 } from './state'
 import { Header } from './components/Header'
 import { ColorListPanel } from './components/ColorListPanel'
+import { PortModal, type PortTab } from './components/PortModal'
+import type { PortEntry } from './portable'
 import { QuantSection } from './components/QuantSection'
 import { ValuesSection } from './components/ValuesSection'
 import { PreviewSection } from './components/PreviewSection'
 
 export default function App() {
   const [state, setState] = useState<AppState>(loadInitial)
+  const [port, setPort] = useState<PortTab | null>(null)
   const [toast, setToast] = useState('')
   const toastTimer = useRef<number | undefined>(undefined)
 
@@ -90,6 +93,21 @@ export default function App() {
     })
   }
 
+  const importColors = (entries: PortEntry[], mode: 'append' | 'replace') => {
+    setState((s) => {
+      const offset = mode === 'append' ? s.colors.length : 0
+      const added = entries.map((e, k) => {
+        const hex = e.hex
+        return { id: s.seq + k, name: e.name || `色 ${offset + k + 1}`, hex, text: hex }
+      })
+      const colors = mode === 'replace' ? added : [...s.colors, ...added]
+      const pair: [number, number] = [0, Math.min(1, colors.length - 1)]
+      return { ...s, colors, pair, seq: s.seq + added.length }
+    })
+    setPort(null)
+    showToast(`${entries.length} 色を取り込みました`)
+  }
+
   const setPart = (part: PartKey) => setState((s) => ({ ...s, part }))
   const setPage = (page: PageKey) => setState((s) => ({ ...s, page }))
   const setTheme = (theme: ThemeKey) => setState((s) => ({ ...s, theme }))
@@ -113,6 +131,8 @@ export default function App() {
           onDown={(i) => moveColor(i, 1)}
           onRemove={removeColor}
           onAdd={addColor}
+          onImport={() => setPort('import')}
+          onExport={() => setPort('export')}
         />
         <main className="main">
           <QuantSection colors={state.colors} pair={state.pair} onSelectPair={setPair} />
@@ -128,6 +148,15 @@ export default function App() {
           />
         </main>
       </div>
+      {port && (
+        <PortModal
+          colors={state.colors}
+          initialTab={port}
+          onClose={() => setPort(null)}
+          onImport={importColors}
+          onCopy={copy}
+        />
+      )}
       {toast && <div className="toast">{toast}</div>}
     </div>
   )
