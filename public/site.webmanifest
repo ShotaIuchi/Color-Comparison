@@ -1,0 +1,14 @@
+{
+  "name": "カラー比較",
+  "short_name": "カラー比較",
+  "description": "色を並べて、数値と見た目で比べるWebツール",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f6f5f2",
+  "theme_color": "#f6f5f2",
+  "lang": "ja",
+  "icons": [
+    { "src": "./favicon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "./apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}

@@ -4,6 +4,71 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>カラー比較 — 色を並べて、数値と見た目で比べる</title>
+    <meta
+      name="description"
+      content="複数の色を並べて、ΔE2000 の色差・WCAG コントラスト比・明度/彩度/色相の差を数値で比較し、ボタンやカードなどのUIパーツで見た目も確認できる無料のWebツール。HEX / RGB / HSL / Lab / LCH / OKLCH に対応。Android colors.xml、iOS、CSS/SCSS 変数、JSON トークンのインポート・エクスポートも可能。"
+    />
+    <meta
+      name="keywords"
+      content="カラー比較,色比較,色差,ΔE2000,コントラスト比,WCAG,アクセシビリティ,カラーパレット,OKLCH,Lab,HSL,デザインツール"
+    />
+    <meta name="author" content="Shota Iuchi" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#f6f5f2" />
+    <link rel="canonical" href="https://shotaiuchi.github.io/Color-Comparison/" />
+
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
+    <link rel="manifest" href="./site.webmanifest" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="カラー比較" />
+    <meta property="og:title" content="カラー比較 — 色を並べて、数値と見た目で比べる" />
+    <meta
+      property="og:description"
+      content="ΔE2000 の色差・WCAG コントラスト比・成分差を数値で比較し、UIパーツのプレビューで見た目も確認できる無料のカラー比較ツール。"
+    />
+    <meta property="og:url" content="https://shotaiuchi.github.io/Color-Comparison/" />
+    <meta property="og:image" content="https://shotaiuchi.github.io/Color-Comparison/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="カラー比較 — 色を並べて、数値と見た目で比べる" />
+    <meta property="og:locale" content="ja_JP" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="カラー比較 — 色を並べて、数値と見た目で比べる" />
+    <meta
+      name="twitter:description"
+      content="ΔE2000 の色差・WCAG コントラスト比・成分差を数値で比較し、UIパーツのプレビューで見た目も確認できる無料のカラー比較ツール。"
+    />
+    <meta name="twitter:image" content="https://shotaiuchi.github.io/Color-Comparison/og-image.png" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "カラー比較",
+        "alternateName": "Color Comparison",
+        "url": "https://shotaiuchi.github.io/Color-Comparison/",
+        "description": "複数の色を並べて、ΔE2000 の色差・WCAG コントラスト比・成分差を数値で比較し、UIパーツのプレビューで見た目も確認できるWebツール。",
+        "applicationCategory": "DesignApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript",
+        "inLanguage": "ja",
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY" },
+        "author": { "@type": "Person", "name": "Shota Iuchi", "url": "https://github.com/ShotaIuchi" },
+        "featureList": [
+          "ΔE2000 / CIE76 色差の算出",
+          "WCAG 2.x コントラスト比と AA / AAA 判定",
+          "HEX / RGB / HSL / Lab / LCH / OKLCH の相互変換",
+          "UIパーツでの見た目プレビュー（ライト / ダーク）",
+          "Android colors.xml・iOS・CSS/SCSS・JSON の色定義インポート / エクスポート",
+          "比較状態のURL共有"
+        ]
+      }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -13,6 +78,9 @@
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <p>カラー比較は JavaScript を有効にしてご利用ください。色を並べて、ΔE2000 の色差や WCAG コントラスト比を数値と見た目で比較できるツールです。</p>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
